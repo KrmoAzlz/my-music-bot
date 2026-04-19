@@ -1,4 +1,17 @@
 import discord
+from flask import Flask
+from threading import Thread
+
+app = Flask('')
+@app.route('/')
+def home(): return "Bot is Online!"
+
+def run():
+    app.run(host='0.0.0.0', port=8080)
+
+def keep_alive():
+    Thread(target=run).start()
+
 from discord.ext import commands
 import yt_dlp
 import asyncio
