@@ -357,5 +357,23 @@ async def help_music(ctx):
 @bot.event
 async def on_ready():
     print(f"✅ البوت جاهز: {bot.user}")
+from flask import Flask
+from threading import Thread
+
+app = Flask('')
+
+@app.route('/')
+def home():
+    return "I'm alive"
+
+def run():
+    app.run(host='0.0.0.0', port=8080)
+
+def keep_alive():
+    t = Thread(target=run)
+    t.start()
+
+# أضف هذا السطر قبل bot.run
+keep_alive()
 
 bot.run(TOKEN)
